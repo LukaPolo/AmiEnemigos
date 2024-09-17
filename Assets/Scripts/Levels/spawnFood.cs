@@ -33,7 +33,7 @@ public class spawnFood : MonoBehaviour
         //Genera la comida aleatoria en posicion aleatoria
         Instantiate(food[foodArrayPos], puntoSpawn[spawnArrayPos].transform.position, puntoSpawn[spawnArrayPos].transform.rotation);
         generateFood = false; //Hace falta que otro script vuelva a esto verdadero cuando se deje la comida en el plato
+        //Puesto solucion temporal en linea 44 y 86 del plato
         //A ese script le hace falta agregar una condicion para que no solo con acercarse cree comida
-        //el Generate podría ser llamado desde el plato cuando se entregue comida en vez desde el Update
     }
 }

@@ -1,104 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//En este script genero ataques como proyectiles
 public class AttackGenerator : MonoBehaviour
 {
     [SerializeField]
-    private string status;
+    private string attackStatus;
+    public string AttackStatus { get => attackStatus; set => attackStatus = value; }
     [SerializeField]
     private AudioSource attackSound;
     [SerializeField]
-    private GameObject pawnAttack;
+    private GameObject pawnAttack;//el prefab de las garritas
     [SerializeField]
-    private float timeRange;
-    public string Status { get => status; set => status = value; }
-
+    private float timeRange;//tiempo que ataca entre el ultimo disparo (simple)
+    private float inteval;//intervalo entre los ataques seguidos
+    [SerializeField]
+    private bool isAttacking;
+    public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
+    
     void Start()
     {
-        status = "ataque2";
+        isAttacking = false;
         attackSound = GetComponent<AudioSource>();
-        Invoke("CheckStatus", 0.4f);
+        //estos 2 siguientes que lo vea el equipo de balance xD
+        inteval = 0.1f;
+        timeRange = 0.4f;
+        CheckStatus();
     }
     private void Update()
     {
-        //Esto debe de ser controlado por la maquina de estado y no por el Update
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isAttacking)
         {
-            status = "ataque1";
             CheckStatus();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            status = "stop";
-            CancelInvoke();
-            CheckStatus();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            status = "ataque2";
-            CheckStatus();
-        }
+            isAttacking = false;
+        }    
     }
 
     void CheckStatus()
     {
-        switch (status)
+        Attacks pawnAttacks = pawnAttack.GetComponent<Attacks>();
+        switch (attackStatus)
         {
-            case "ataque1":
+            case "attack1": //los disparos tendran una velocidad en fase 1
+                pawnAttacks.Velocity = 4f;                
                 GenerateSimpleAttack();
                 break;
-            case "ataque2":
+            case "attack2"://en fase 2 otra ya que solo se dispara desde un mismo lugar
+                pawnAttacks.Velocity = 6f;
+                CancelInvoke();
                 GenerateTargeredAttack();
                 break;
-            case "stop":
+            case "stop"://Cancela los disparos
+                CancelInvoke();
                 attackSound.Stop();
                 break;
         }
     }
     void GenerateSimpleAttack()
     {
-        //Debug.Log("Paso por ATAQUE 1");
-        attackSound.Play();
         GenerateAttack();
         Invoke("GenerateSimpleAttack", timeRange);
     }
     void GenerateTargeredAttack()
     {
-        //Debug.Log("Paso por ATAQUE 2");
-        int i = Random.Range(1, 11);
         Instantiate(pawnAttack, transform.position, transform.rotation);
-
-        if (i == 1)
-        {
-            Invoke("GenerateAttack", 0);
-            attackSound.Play();
-            Invoke("GenerateAttack", 0.1f);
-            attackSound.Play();
-            Invoke("GenerateTargeredAttack", 0.6f);
-            attackSound.Play();
-
+        int i = Random.Range(1, 11);//Tiramos un random para ver que tipo de ataque se genera 
+        GenerateAttack();
+        if (i == 1)//10% de probabilidad de ataque doble
+        {                       
+            Invoke("GenerateAttack", inteval);
+            Invoke("GenerateTargeredAttack", timeRange+inteval);
         }
-        else if (i == 10)
+        else if (i == 10)//10% de probabilidad de ataque triple
         {
-            Invoke("GenerateAttack", 0);
-            attackSound.Play();
-            Invoke("GenerateAttack", 0.1f);
-            attackSound.Play();
-            Invoke("GenerateAttack", 0.2f);
-            attackSound.Play();
-            Invoke("GenerateTargeredAttack", 0.7f);
+            Invoke("GenerateAttack", inteval);
+            Invoke("GenerateAttack", inteval + inteval);
+            Invoke("GenerateTargeredAttack", timeRange + inteval + inteval + inteval);
         }
-        else
+        else//80% de probabilidad de 1 solo ataque
         {
-            Invoke("GenerateAttack", 0);
-            attackSound.Play();
-            Invoke("GenerateTargeredAttack", 0.5f);
+            Invoke("GenerateTargeredAttack", timeRange);
         }
     }
 
     void GenerateAttack()
     {
+        attackSound.Play();
         Quaternion temporalRotation = transform.rotation;
         Instantiate(pawnAttack, transform.position, temporalRotation);
     }
