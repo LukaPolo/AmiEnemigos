@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class playGame : MonoBehaviour
+public class irViñeta : MonoBehaviour
 {
-   public void EscenaJuego()
+    public void EscenaJuego()
     {
-        SceneManager.LoadScene("MenuSeleccion");
+        SceneManager.LoadScene("Vineta1");
     }
 
-    
+
     public void Salir()
     {
         Application.Quit();
