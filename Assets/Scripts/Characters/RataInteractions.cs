@@ -11,6 +11,8 @@ public class RataInteractions : MonoBehaviour
     public GameObject[] hearts;
     private int life;
     private AudioSource oof;
+    private bool hasCollided = false; // Para saber si ya colisionó
+
     private void Start()
     {
         life = hearts.Length;
@@ -32,14 +34,34 @@ public class RataInteractions : MonoBehaviour
             Destroy(hearts[2].gameObject);
         }
     }
+    public void QuitarVida()
+    {
+        life--;
+        oof.Play();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if (collision.gameObject.CompareTag("balas"))
+        {
+            Destroy(collision.gameObject);
+            if (hasCollided) return;// Si ya colisionó, ya no hace nada en el tiempo dado
+            QuitarVida();
+            hasCollided = true;
+            StartCoroutine(ResetCollisionFlag());
+        }
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            life--;
-            oof.Play();
+            if (hasCollided) return;// Si ya colisionó, ya no hace nada en el tiempo dado
+            QuitarVida();
+            hasCollided = true;
+            StartCoroutine("ResetCollisionFlag");
         }
     }
-    
+
+    private IEnumerator ResetCollisionFlag()
+    {
+        yield return new WaitForSeconds(2f); // Espera un tiempo antes de permitir otra colisión//Equipo de balance cambiar esto
+        hasCollided = false; // Habilita nuevamente la colisión
+    }
+
 }
