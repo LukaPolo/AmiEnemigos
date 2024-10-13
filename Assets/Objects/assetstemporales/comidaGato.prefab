@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 457158595072715421}
   - component: {fileID: 921246886714659894}
   - component: {fileID: 6821276582335185955}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: comidaGato
-  m_TagString: Untagged
+  m_TagString: food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a217026bfc3107b4fbe0128dc5e05422, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff0c718c4e996d48849563c26d536d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debuff: 0
+  debuff: 0.87

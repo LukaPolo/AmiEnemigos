@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attacks : MonoBehaviour
 {
     [SerializeField]
-    private float velocity;
+    private float velocity = 5f;
     public float Velocity { get => velocity; set => velocity = value; }
 
     void Update()
