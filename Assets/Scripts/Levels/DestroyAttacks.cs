@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class DestroyAttacks : MonoBehaviour
 {
-    //Para destruir las balas al llegar a los limites
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "balas")
         {
-            Destroy(collision.transform.parent.gameObject);
+            Destroy(collision.transform.gameObject);
         }
     }
 }

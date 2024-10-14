@@ -12,9 +12,12 @@ public class RataInteractions : MonoBehaviour
     private int life;
     private AudioSource oof;
     private bool hasCollided = false; // Para saber si ya colisionó
-
+    [SerializeField]
+    private bool hasFood;
+    public bool HasFood { get => hasFood; set => hasFood = value; }
     private void Start()
     {
+        hasFood = false;
         life = hearts.Length;
         oof = GetComponent<AudioSource>();
     }
@@ -44,21 +47,24 @@ public class RataInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("balas"))
         {
             Destroy(collision.gameObject);
-            if (hasCollided) return;// Si ya colisionó, ya no hace nada en el tiempo dado
+            if (hasCollided) return;// Deshabilita la colision
             QuitarVida();
             hasCollided = true;
-            StartCoroutine(ResetCollisionFlag());
+            StartCoroutine(InmuneTime());
         }
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            if (hasCollided) return;// Si ya colisionó, ya no hace nada en el tiempo dado
+            if (hasCollided) return;// Deshabilita la colision
             QuitarVida();
             hasCollided = true;
-            StartCoroutine("ResetCollisionFlag");
+            StartCoroutine("InmuneTime");
+        }
+        if (collision.gameObject.CompareTag("food")) {
+            hasFood = true;
         }
     }
 
-    private IEnumerator ResetCollisionFlag()
+    private IEnumerator InmuneTime()
     {
         yield return new WaitForSeconds(2f); // Espera un tiempo antes de permitir otra colisión//Equipo de balance cambiar esto
         hasCollided = false; // Habilita nuevamente la colisión

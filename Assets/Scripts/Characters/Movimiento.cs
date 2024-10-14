@@ -16,6 +16,7 @@ public class Movimiento : MonoBehaviour
 
     [SerializeField]
     private float multVel;
+
     public float MultVel { get => multVel; set => multVel = value; }
 
     // Start is called before the first frame update
@@ -66,5 +67,14 @@ public class Movimiento : MonoBehaviour
             rigid2d.rotation = Mathf.Lerp(rigid2d.rotation, angle, rotInter);
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("food"))
+        {
+            Foods food = collision.GetComponent<Foods>();
+            multVel = food.Debuff;
+        }
     }
 }

@@ -8,16 +8,18 @@ TagManager:
   - pared
   - balas
   - comidaG
+  - limite
+  - food
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - food
   - Water
   - UI
   - balas
   - Enemigo
-  - 
+  - pared
   - 
   - 
   - 
