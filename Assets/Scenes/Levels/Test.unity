@@ -494,9 +494,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackStatus: 
   attackSound: {fileID: 0}
-  pawnAttack: {fileID: 3690978389571343613, guid: 36f3d578db8960645816ce0016fc889d, type: 3}
+  pawnAttack:
+  - {fileID: 3690978389571343613, guid: 76eb4f55e02900e41b5d36586e392109, type: 3}
+  - {fileID: 3690978389571343613, guid: 76eb4f55e02900e41b5d36586e392109, type: 3}
+  - {fileID: 3690978389571343613, guid: 76eb4f55e02900e41b5d36586e392109, type: 3}
+  - {fileID: 3690978389571343613, guid: 76eb4f55e02900e41b5d36586e392109, type: 3}
+  - {fileID: 3690978389571343613, guid: 76eb4f55e02900e41b5d36586e392109, type: 3}
   timeRange: 0
   isAttacking: 0
+  bullet: 0
 --- !u!82 &200354761
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1763,6 +1769,7 @@ MonoBehaviour:
   - {fileID: 1205393807}
   - {fileID: 4426443}
   - {fileID: 840807556}
+  hasFood: 0
 --- !u!1 &1051122266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4182,6 +4189,7 @@ MonoBehaviour:
   - {fileID: 1205393807}
   - {fileID: 4426443}
   - {fileID: 840807556}
+  hasFood: 0
 --- !u!114 &5474501112634850467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4189,7 +4197,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3268302918743110438}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc7f26c47e813584690ff962e3f44714, type: 3}
   m_Name: 
