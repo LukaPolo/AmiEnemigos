@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RatStateMachine : StateMachine{
     [SerializeField] private int lives;
+    [SerializeField] private float speed = 5f; public float Speed {get => speed;}
     [SerializeField] private bool isOnHitCooldown;
 
     void Awake(){
         StateList.Add("IDLE", GetComponent<RatIdle>());
         StateList.Add("WALK", GetComponent<RatWalk>());
         StateList.Add("DEATH", GetComponent<RatDeath>());
-        ChangeState("IDLE");
+        ChangeState(initialState);
     }
 
     void Start(){

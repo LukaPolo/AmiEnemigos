@@ -77,13 +77,13 @@ public class CatBehaviour : MonoBehaviour
                 animator.SetBool("isIdle", true);
                 animator.SetBool("isJumpingRight", false);
                 animator.SetBool("isJumpingLeft", false);
-                animator.SetBool("isMoving",true);
                 speed = 3;
                 StopCoroutine("ChargedAttack");
                 StartCoroutine("FollowPlayer");
                 break;
             case "phase5":
                 StopCoroutine("FollowPlayer");
+                animator.SetInteger("MoveDirection", 0);
                 break;
         }
     }
@@ -141,7 +141,7 @@ public class CatBehaviour : MonoBehaviour
         while (true)
         {
             
-            // Bucle que se ejecutará mientras el tiempo restante sea mayor que 0
+            // Bucle que se ejecutarï¿½ mientras el tiempo restante sea mayor que 0
             while (timeSearching > 0)
             {
                 WaitForPlayer();
@@ -158,7 +158,7 @@ public class CatBehaviour : MonoBehaviour
             {
                 Vector2 direction = (target.transform.position - transform.position).normalized;
 
-                // Movimiento más hacia los lados
+                // Movimiento mï¿½s hacia los lados
                 if (direction.x >= 0)
                 {
                     // Movimiento hacia la derecha
@@ -191,45 +191,33 @@ public class CatBehaviour : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
             Vector2 direction = (target.transform.position - transform.position).normalized;
-            // Comparar la dirección en el eje X y el eje Y
+            // Comparar la direcciï¿½n en el eje X y el eje Y
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
-                // Movimiento más hacia los lados
+                // Movimiento mï¿½s hacia los lados
                 if (direction.x > 0)
                 {
                     // Movimiento hacia la derecha
-                    animator.SetBool("Right", true);
-                    animator.SetBool("Left", false);
-                    animator.SetBool("Up", false);
-                    animator.SetBool("Down", false);
+                    animator.SetInteger("MoveDirection", 4);
                 }
                 else
                 {
                     // Movimiento hacia la izquierda
-                    animator.SetBool("Left", true);
-                    animator.SetBool("Right", false);
-                    animator.SetBool("Up", false);
-                    animator.SetBool("Down", false);
+                    animator.SetInteger("MoveDirection", 3);
                 }
             }
             else
             {
-                // Movimiento más hacia arriba o hacia abajo
+                // Movimiento mï¿½s hacia arriba o hacia abajo
                 if (direction.y > 0)
                 {
                     // Movimiento hacia arriba
-                    animator.SetBool("Up", true);
-                    animator.SetBool("Down", false);
-                    animator.SetBool("Left", false);
-                    animator.SetBool("Right", false);
+                    animator.SetInteger("MoveDirection", 1);
                 }
                 else
                 {
                     // Movimiento hacia abajo
-                    animator.SetBool("Up", false);
-                    animator.SetBool("Down", true);
-                    animator.SetBool("Left", false);
-                    animator.SetBool("Right", false);
+                    animator.SetInteger("MoveDirection", 2);
                 }
             }
             yield return null;

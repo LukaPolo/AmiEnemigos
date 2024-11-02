@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatWalk : State{
+public class RatWalk : RatState{
     private CharacterMovement mov;
-    [SerializeField] private float speed = 5f;
 
     public override void Awake(){
         base.Awake();
@@ -21,8 +20,8 @@ public class RatWalk : State{
 
     public void MovePlayer(Vector2 moveInput){
         if(moveInput != Vector2.zero){
-            mov.Move(moveInput, speed);
-            mov.RotateToMovementDirection(speed * 100);
+            mov.Move(moveInput, StateMachine.Speed);
+            mov.RotateToMovementDirection(StateMachine.Speed * 100);
         }else{
             mov.Move(Vector2.zero, 0);
             StateMachine.ChangeState("IDLE");
