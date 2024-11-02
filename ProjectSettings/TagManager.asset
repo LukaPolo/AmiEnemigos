@@ -10,6 +10,7 @@ TagManager:
   - comidaG
   - limite
   - food
+  - Rat
   layers:
   - Default
   - TransparentFX

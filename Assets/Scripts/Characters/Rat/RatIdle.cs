@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatIdle : State{
+public class RatIdle : RatState{
     public void OnEnable(){
         InputManager.moveInput += MovePlayer;
     }
