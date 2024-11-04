@@ -31,7 +31,7 @@ public class CatBehaviour : MonoBehaviour
         changeStatus = false;
         speed = 6f;
         timeSearching = 3f;
-        catStatus = "phase4";
+        catStatus = "phase1";
         CheckStatus();
         
     }
