@@ -2,4 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatCalm : State{}
+public class CatCalm : RatState{
+    void OnEnable(){
+        //
+    }
+}
