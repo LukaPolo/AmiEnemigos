@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b8a9adca0c2294b9ee52d76adfdba7, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  weight: 12
+  weight: 3
   angerModifier: -10

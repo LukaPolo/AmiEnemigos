@@ -15,7 +15,6 @@ public class Cat : Character{
         Initialize(Data);
         anger = Data.MaxAnger;
         attackTarget = GameObject.FindWithTag("Rat").transform;
-        PlayMusic("CatAngry", true);
     }
 
     public void CheckAnger(){

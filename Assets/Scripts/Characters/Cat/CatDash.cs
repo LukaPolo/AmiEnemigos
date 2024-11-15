@@ -9,6 +9,7 @@ public class CatDash : CatState{
     void OnEnable(){
         timeSearching = 3f;
         StartCoroutine(DashAttack());
+        Cat.PlayMusic("CatDash", true);
     }
 
     void OnDisable(){

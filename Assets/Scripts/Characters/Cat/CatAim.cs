@@ -7,6 +7,7 @@ public class CatAim : CatState{
 
     void OnEnable(){
         StartCoroutine(MoveToCenter());
+        Cat.PlayMusic("CatAim", true);
     }
 
     void OnDisable(){
