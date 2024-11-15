@@ -9,6 +9,10 @@ public class CatPlate : MonoBehaviour{
         Cat.calmed += TurnOffCollision;
     }
 
+    void OnDisable(){
+        Cat.calmed -= TurnOffCollision;
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Food"){
             other.GetComponent<BoxCollider2D>().enabled = false;

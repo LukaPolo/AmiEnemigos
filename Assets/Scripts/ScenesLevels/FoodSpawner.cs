@@ -16,6 +16,11 @@ public class FoodSpawner : MonoBehaviour{
         SpawnFood();
     }
 
+    void OnDisable(){
+        Cat.angry -= SpawnFood;
+        Cat.calmed -= SpawnLastFood;
+    }
+
     public void SpawnFood(){
         foodID = Random.Range(0, foods.Count); //Se selecciona una comida al azar
         pointID = Random.Range(0, spawnPoints.Count); //Se selecciona un lugar al azar

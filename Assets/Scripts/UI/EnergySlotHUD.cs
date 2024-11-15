@@ -15,6 +15,10 @@ public class EnergySlotHUD : MonoBehaviour{
         SetIcons();
     }
 
+    void OnDisable(){
+        Rat.livesChanged -= ChangeIconAmount;
+    }
+
     public void SetIcons(){
         for(int i = 0; i < target.Lives; i++){
             GameObject icon = Instantiate(slotIcon);
