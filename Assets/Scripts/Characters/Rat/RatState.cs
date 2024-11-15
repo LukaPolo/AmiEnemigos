@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class RatState : State{
-    protected RatStateMachine StateMachine;
+    protected Rat Rat;
 
-    public virtual void Awake(){
+    void Awake(){
         Initialize();
     }
 
     public override void Initialize(){
-        StateMachine = GetComponent<RatStateMachine>();
+        base.Initialize();
+        Rat = GetComponent<Rat>();
     }
 }

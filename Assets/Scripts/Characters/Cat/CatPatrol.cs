@@ -8,12 +8,12 @@ public class CatPatrol : CatState{
 
     void OnEnable(){
         targetPoint = 0;
-        InvokeRepeating("PatrolAttack", 0.5f, StateMachine.AttackDelay);
-        StateMachine.Anim.Play("Cat.Attack");
+        InvokeRepeating("PatrolAttack", 0.5f, Cat.Data.AttackDelay);
+        Cat.PlayAnim("Cat.Attack");
     }
     void OnDisable(){
         CancelInvoke("PatrolAttack");
-        StateMachine.Anim.Play("Cat.Idle");
+        Cat.PlayAnim("Cat.Idle");
     }
 
     void Update(){
@@ -22,7 +22,7 @@ public class CatPatrol : CatState{
 
     void MoveBetweenPoints(){
         if(targetPoint < points.Count){
-            transform.position = Vector3.MoveTowards(transform.position, points[targetPoint].position, StateMachine.Speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, points[targetPoint].position, Cat.Data.PatrolSpeed * Time.deltaTime);
         }else{
             targetPoint = 0;
         }
@@ -32,6 +32,6 @@ public class CatPatrol : CatState{
     }
 
     void PatrolAttack(){
-        StateMachine.LaunchProjectile(0);
+        Cat.LaunchProjectile(0);
     }
 }

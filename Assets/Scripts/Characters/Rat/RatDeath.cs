@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RatDeath : RatState{
     void OnEnable(){
-        Debug.Log("MUERTO");
+        GetComponent<Collider2D>().enabled = false;
+        Rat.ratDied?.Invoke();
+        Rat.PlayAnim("Rat.Death");
     }
 }

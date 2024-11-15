@@ -3,11 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CatPlate : MonoBehaviour{
-    [SerializeField] private CatStateMachine owner;
+    [SerializeField] private Cat owner;
 
-    public void OnTriggerEnter2D(Collider2D other){
-        if(other.tag == "Rat"){
-            owner.ChangeAnger(-10);
+    void Awake(){
+        Cat.calmed += TurnOffCollision;
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "Food"){
+            other.GetComponent<BoxCollider2D>().enabled = false;
+            other.transform.parent.gameObject.GetComponent<ObjectHelder>().ReleaseObject();
+            other.transform.parent = transform;
+            other.transform.position = transform.position;
+            owner.ChangeAnger(other.GetComponent<Food>().Data.AngerModifier);
         }
+    }
+
+    public void StoreFood(GameObject food){
+        owner.ChangeAnger(food.GetComponent<Food>().Data.AngerModifier);
+    }
+
+    public void TurnOffCollision(){
+        GetComponent<CircleCollider2D>().enabled = false;
     }
 }
