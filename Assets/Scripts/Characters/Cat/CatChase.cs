@@ -6,6 +6,7 @@ public class CatChase : CatState{
     void OnEnable(){
         StartCoroutine(ChaseTarget());
         Cat.AttackHitbox.Activate(-1);
+        Cat.PlayMusic("CatChase", true);
     }
 
     void OnDisable(){

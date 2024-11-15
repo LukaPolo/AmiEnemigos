@@ -14,15 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keys:
   - MainMenu
+  - Story
   - Victory
   - Credits
   - GameOver
-  - CatAngry
+  - CatPatrol
+  - CatAim
+  - CatDash
+  - CatChase
   - CatCalm
   values:
-  - {fileID: 8300000, guid: 59fc55e39206b0642b36c1538cd7732f, type: 3}
+  - {fileID: 8300000, guid: 0fcdcddf77b86b74d9c295afc9f6d050, type: 3}
+  - {fileID: 8300000, guid: 999d18da07d4bed468697b48c7a09cf2, type: 3}
   - {fileID: 8300000, guid: 9c9702a202861c34e92d160b54285055, type: 3}
   - {fileID: 8300000, guid: da701ea2aef752c4d96708687e2f9a8a, type: 3}
   - {fileID: 8300000, guid: 8053eb8a42f977442adff34d675042af, type: 3}
-  - {fileID: 8300000, guid: 3ff658320bcaea04c95277301d216b94, type: 3}
+  - {fileID: 8300000, guid: eea0ca6c2fa893348a7fcb90703e8e44, type: 3}
+  - {fileID: 8300000, guid: 0e7940fbb5bdeda4e95cecdb9cf321c7, type: 3}
+  - {fileID: 8300000, guid: 2888fff5f23d9e84087ad696db7d016b, type: 3}
+  - {fileID: 8300000, guid: cffb34d5e12b75c4ab58756c822428e3, type: 3}
   - {fileID: 8300000, guid: 864bb3258551f03499a66b515636e825, type: 3}

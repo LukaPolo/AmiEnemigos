@@ -9,6 +9,7 @@ public class CatPatrol : CatState{
     void OnEnable(){
         targetPoint = 0;
         InvokeRepeating("PatrolAttack", 0.5f, Cat.Data.AttackDelay);
+        Cat.PlayMusic("CatPatrol", true);
         Cat.PlayAnim("Cat.Attack");
     }
     void OnDisable(){

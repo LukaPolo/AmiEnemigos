@@ -7,7 +7,9 @@ public class MainMenu : MonoBehaviour{
     [SerializeField] private bool loopStartMusic;
 
     void Start(){
-        GameManager.Sound.PlayMusic(startMusic, loopStartMusic);
+        if(startMusic != ""){
+            GameManager.Sound.PlayMusic(startMusic, loopStartMusic);
+        }
     }
 
     public void LoadScene(string sceneName){
