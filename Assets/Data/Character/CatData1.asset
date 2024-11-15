@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0666a3059dc1e48832ae53187d3890, type: 3}
+  m_Name: CatData1
+  m_EditorClassIdentifier: 
+  soundList: {fileID: 11400000, guid: 534043716bc74c441ae1d6d83c95bcb5, type: 2}
+  speed: 3.5
+  patrolSpeed: 6
+  dashSpeed: 20
+  chaseSpeed: 3
+  attackDelay: 0.5
+  attackCadence: 0.2
+  maxAnger: 100
+  projectiles:
+  - {fileID: 8608572109236560648, guid: e08c1805f2eb6764a923810d952a2b0f, type: 3}
+  - {fileID: 7365588992941416160, guid: a9f77482a79f6f8479c795b8473a340b, type: 3}
+  - {fileID: 469588317639398751, guid: 1bb163d4b8627aa47a55699cba49f0aa, type: 3}

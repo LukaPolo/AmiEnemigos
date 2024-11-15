@@ -5,6 +5,7 @@ using UnityEngine;
 public class RatIdle : RatState{
     public void OnEnable(){
         InputManager.moveInput += MovePlayer;
+        Rat.PlayAnim("Rat.Idle");
     }
 
     public void OnDisable(){
