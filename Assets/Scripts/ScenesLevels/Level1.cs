@@ -8,6 +8,11 @@ public class Level1 : MonoBehaviour{
         Rat.ratDied += DefeatEnd;
     }
 
+    void OnDisable(){
+        ObjectHelder.lastFoodHeld -= VictoryEnd;
+        Rat.ratDied -= DefeatEnd;
+    }
+
     public void VictoryEnd(){
         StartCoroutine(LevelEndCounter("Victory", 2f));
     }
