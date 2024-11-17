@@ -7,12 +7,13 @@ public class CatAim : CatState{
 
     void OnEnable(){
         StartCoroutine(MoveToCenter());
+        Cat.PlayMusic("CatAim", true);
     }
 
     void OnDisable(){
         StopAllCoroutines();
         transform.rotation = Quaternion.identity;
-        StateMachine.Anim.Play("Cat.Idle");
+        Cat.PlayAnim("Cat.Idle");
     }
 
     void Update(){
@@ -20,31 +21,31 @@ public class CatAim : CatState{
     }
 
     void AimToTarget(){
-        Vector3 look = transform.InverseTransformPoint(StateMachine.AttackTarget.position);
+        Vector3 look = transform.InverseTransformPoint(Cat.AttackTarget.position);
         float angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg + 90;
         transform.Rotate(0, 0, angle);
     }
 
     IEnumerator MoveToCenter(){
         while(transform.position != aimPoint.position){
-            transform.position = Vector3.MoveTowards(transform.position, aimPoint.position, StateMachine.Speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, aimPoint.position, Cat.Data.PatrolSpeed * Time.deltaTime);
             yield return null;
         }
         StartCoroutine(AimAttack());
-        StateMachine.Anim.Play("Cat.Attack");
+        Cat.PlayAnim("Cat.Attack");
     }
 
     IEnumerator AimAttack(){
         while(true){
             int randomCount = Random.Range(1, 11);
-            yield return new WaitForSeconds(StateMachine.AttackDelay);
-            StateMachine.LaunchProjectile(0);
+            yield return new WaitForSeconds(Cat.Data.AttackDelay);
+            Cat.LaunchProjectile(0);
             if(randomCount == 1 || randomCount == 10){
-                yield return new WaitForSeconds(StateMachine.AttackCadence);
-                StateMachine.LaunchProjectile(1);
+                yield return new WaitForSeconds(Cat.Data.AttackCadence);
+                Cat.LaunchProjectile(1);
                 if(randomCount == 10){
-                    yield return new WaitForSeconds(StateMachine.AttackCadence);
-                    StateMachine.LaunchProjectile(2);
+                    yield return new WaitForSeconds(Cat.Data.AttackCadence);
+                    Cat.LaunchProjectile(2);
                 }
             }
         }

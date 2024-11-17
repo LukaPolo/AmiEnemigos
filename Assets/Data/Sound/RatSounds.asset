@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4fc0cdb9b507a408d4f8e2cf7dc1e5, type: 3}
+  m_Name: RatSounds
+  m_EditorClassIdentifier: 
+  keys:
+  - Hit
+  - Screech1
+  - Screech2
+  values:
+  - {fileID: 8300000, guid: 50ecabe26b274994db247859b575333e, type: 3}
+  - {fileID: 8300000, guid: d96abd3bc8c527a4c8a82905de2fe2d3, type: 3}
+  - {fileID: 8300000, guid: 1cbc423806ee66d40ba6fd12a648b6df, type: 3}

@@ -5,35 +5,37 @@ using UnityEngine;
 public class CatChase : CatState{
     void OnEnable(){
         StartCoroutine(ChaseTarget());
+        Cat.AttackHitbox.Activate(-1);
+        Cat.PlayMusic("CatChase", true);
     }
 
     void OnDisable(){
         StopAllCoroutines();
-        StateMachine.Anim.SetInteger("MoveDirection", 0);
-        StateMachine.Anim.Play("Cat.Idle");
+        Cat.AttackHitbox.Deactivate();
+        Cat.PlayAnim("Cat.Idle");
     }
 
     IEnumerator ChaseTarget(){
         while (true){      
-            transform.position = Vector3.MoveTowards(transform.position, StateMachine.AttackTarget.position, StateMachine.ChaseSpeed * Time.deltaTime);
-            Vector2 direction = (StateMachine.AttackTarget.position - transform.position).normalized;
+            transform.position = Vector3.MoveTowards(transform.position, Cat.AttackTarget.position, Cat.Data.ChaseSpeed * Time.deltaTime);
+            Vector2 direction = (Cat.AttackTarget.position - transform.position).normalized;
             if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
                 // Movimiento m�s hacia los lados
-                if(direction.x > 0){
-                    // Movimiento hacia la derecha
-                    StateMachine.Anim.SetInteger("MoveDirection", 4);
-                }else{
+                if(direction.x < 0){
                     // Movimiento hacia la izquierda
-                    StateMachine.Anim.SetInteger("MoveDirection", 3);
+                    Cat.PlayAnim("Cat.MoveLeft");
+                }else{
+                    // Movimiento hacia la derecha
+                    Cat.PlayAnim("Cat.MoveRight");
                 }
             }else{
                 // Movimiento m�s hacia arriba o hacia abajo
                 if(direction.y > 0){
                     // Movimiento hacia arriba
-                    StateMachine.Anim.SetInteger("MoveDirection", 1);
+                    Cat.PlayAnim("Cat.MoveUp");
                 }else{
                     // Movimiento hacia abajo
-                    StateMachine.Anim.SetInteger("MoveDirection", 2);
+                    Cat.PlayAnim("Cat.MoveDown");
                 }
             }
             yield return null;

@@ -9,11 +9,12 @@ public class CatDash : CatState{
     void OnEnable(){
         timeSearching = 3f;
         StartCoroutine(DashAttack());
+        Cat.PlayMusic("CatDash", true);
     }
 
     void OnDisable(){
         StopAllCoroutines();
-        StateMachine.Anim.Play("Cat.Idle");
+        Cat.PlayAnim("Cat.Idle");
     }
 
     IEnumerator DashAttack(){
@@ -24,21 +25,24 @@ public class CatDash : CatState{
                 yield return null;
             }
             yield return new WaitForSeconds(0.1f);
-            lastTargetPos = StateMachine.AttackTarget.position;
-            Vector2 direction = (StateMachine.AttackTarget.position - transform.position).normalized;
+            lastTargetPos = Cat.AttackTarget.position;
+            Vector2 direction = (Cat.AttackTarget.position - transform.position).normalized;
             if (direction.x >= 0){
                 // Movimiento hacia la derecha
-                StateMachine.Anim.Play("Cat.JumpRight");
+                Cat.PlayAnim("Cat.JumpRight");
             }else{
                 // Movimiento hacia la izquierda
-                StateMachine.Anim.Play("Cat.JumpLeft");
+                Cat.PlayAnim("Cat.JumpLeft");
             }
+            Cat.AttackHitbox.Activate(-1);
+            Cat.PlaySound("Attack2");
             while(transform.position != lastTargetPos){
-                transform.position = Vector3.MoveTowards(transform.position, lastTargetPos, StateMachine.DashSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, lastTargetPos, Cat.Data.DashSpeed * Time.deltaTime);
                 yield return null;
             }
             timeSearching = 3f;
-            StateMachine.Anim.Play("Cat.Idle");
+            Cat.AttackHitbox.Deactivate();
+            Cat.PlayAnim("Cat.Idle");
         }
     }
 }
