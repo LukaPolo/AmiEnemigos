@@ -7,7 +7,7 @@ public class playGame : MonoBehaviour
 {
    public void EscenaJuego()
     {
-        SceneManager.LoadScene("MenuSeleccion");
+        SceneManager.LoadScene("Historia");
     }
 
     
