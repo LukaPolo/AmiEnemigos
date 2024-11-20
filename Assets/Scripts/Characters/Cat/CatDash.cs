@@ -35,7 +35,7 @@ public class CatDash : CatState{
                 Cat.PlayAnim("Cat.JumpLeft");
             }
             Cat.AttackHitbox.Activate(-1);
-            Cat.PlaySound("Attack2");
+            Cat.PlaySound("Attack2", false);
             while(transform.position != lastTargetPos){
                 transform.position = Vector3.MoveTowards(transform.position, lastTargetPos, Cat.Data.DashSpeed * Time.deltaTime);
                 yield return null;

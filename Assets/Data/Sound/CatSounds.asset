@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: CatSounds
   m_EditorClassIdentifier: 
   keys:
+  - Walk
+  - Run
   - Attack1
   - Attack2
   values:
+  - {fileID: 8300000, guid: fc54cb1ce81374e479f40c021379125f, type: 3}
+  - {fileID: 8300000, guid: 25514331d28045c45b0fe9d88fc349c1, type: 3}
   - {fileID: 8300000, guid: 68bae34dce4ed274383a3e936b86bdda, type: 3}
-  - {fileID: 8300000, guid: aa0e82eb9867bd549a412451193a1817, type: 3}
+  - {fileID: 8300000, guid: f17b356427a792247a2d5bd79aacd1df, type: 3}

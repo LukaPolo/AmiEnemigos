@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CatData1
   m_EditorClassIdentifier: 
   soundList: {fileID: 11400000, guid: 534043716bc74c441ae1d6d83c95bcb5, type: 2}
-  speed: 3.5
+  speed: 5
   patrolSpeed: 6
   dashSpeed: 20
   chaseSpeed: 3

@@ -22,8 +22,14 @@ public abstract class Character : MonoBehaviour{
         }
     }
 
-    public void PlaySound(string soundName){
-        source.PlayOneShot(characterData.SoundList.GetSound(soundName));
+    public void PlaySound(string soundName, bool loop){
+        source.clip = characterData.SoundList.GetSound(soundName);
+        source.loop = loop;
+        source.Play();
+    }
+
+    public void StopSound(){
+        source.Stop();
     }
 
     public void PlayMusic(string musicName, bool loop){

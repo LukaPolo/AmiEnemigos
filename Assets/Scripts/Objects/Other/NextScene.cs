@@ -9,7 +9,7 @@ public class NextScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Rat"))
         {
             SceneManager.LoadScene(scene);
         }

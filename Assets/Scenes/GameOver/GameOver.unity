@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMusic: GameOver
-  loopStartMusic: 0
+  loopStartMusic: 1
 --- !u!1 &990398371
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 99c6710fe16304a4696e619a8af243bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 246a28c61a6072040b96180e75752454, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

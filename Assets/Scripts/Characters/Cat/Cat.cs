@@ -43,6 +43,6 @@ public class Cat : Character{
 
     public void LaunchProjectile(int id){
         Instantiate(Data.Projectiles[id], attackSpawner.position, attackSpawner.rotation);
-        PlaySound("Attack1");
+        PlaySound("Attack1", false);
     }
 }
