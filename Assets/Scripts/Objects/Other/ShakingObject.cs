@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShakingObject : MonoBehaviour
-{
-
+public class ShakingObject : MonoBehaviour{
+    [SerializeField] private SoundData soundList;
+    [SerializeField] private string objectName;
     [SerializeField] private bool objectFallen; public bool ObjectFallen { get => objectFallen; }
     [SerializeField] private Animator anim;
     [SerializeField] private bool isShaking;
     [SerializeField] private bool catIsHolding;
 
-    [SerializeField] private float shakeDuration = 10f; // Tiempo límite para que caiga si no lo sostiene el gato
+    [SerializeField] private float shakeDuration = 10f; // Tiempo lï¿½mite para que caiga si no lo sostiene el gato
     [SerializeField] private float holdDuration = 2f;   // Tiempo necesario para que el gato lo estabilice
 
     private Coroutine shakeCoroutine;
@@ -40,7 +40,7 @@ public class ShakingObject : MonoBehaviour
             catMovement.HoldingObject = true;
             if (shakeCoroutine != null)
             {
-                StopCoroutine(shakeCoroutine); // Detenemos la caída mientras el gato sostiene
+                StopCoroutine(shakeCoroutine); // Detenemos la caï¿½da mientras el gato sostiene
             }
             holdCoroutine = StartCoroutine(HoldTimer());
         }
@@ -56,7 +56,7 @@ public class ShakingObject : MonoBehaviour
             {
                 StopCoroutine(holdCoroutine);
             }
-            // Reiniciamos el temporizador de caída si aún está temblando
+            // Reiniciamos el temporizador de caï¿½da si aï¿½n estï¿½ temblando
             if (isShaking && shakeCoroutine == null)
             {
                 shakeCoroutine = StartCoroutine(ShakeTimer());
@@ -75,7 +75,13 @@ public class ShakingObject : MonoBehaviour
         }
 
         // Si el gato no sostiene el objeto a tiempo, este cae
-        anim.SetInteger("ObjectStatus", 2); // Estado de caída
+        anim.SetInteger("ObjectStatus", 2); // Estado de caï¿½da
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        // Comprueba si la animaciÃ³n activa ha terminado
+        while(stateInfo.IsName(objectName + "_Fall") && stateInfo.normalizedTime >= 1f){
+            yield break;
+        }
+        GameManager.Sound.PlaySound(soundList.GetSound(objectName + "Break"));
         isShaking = false;
         catMovement.CanMove = false;
         Invoke("ObjectHasFallen", 2);
@@ -97,8 +103,7 @@ public class ShakingObject : MonoBehaviour
         catMovement.HoldingObject = false;
     }
 
-    void ObjectHasFallen()
-    {
+    void ObjectHasFallen(){
         objectFallen = true;
     }
 }

@@ -17,6 +17,6 @@ MonoBehaviour:
   - Screech1
   - Screech2
   values:
-  - {fileID: 8300000, guid: 50ecabe26b274994db247859b575333e, type: 3}
+  - {fileID: 8300000, guid: 043bd7124705d6649982c6239d88ff03, type: 3}
   - {fileID: 8300000, guid: d96abd3bc8c527a4c8a82905de2fe2d3, type: 3}
   - {fileID: 8300000, guid: 1cbc423806ee66d40ba6fd12a648b6df, type: 3}

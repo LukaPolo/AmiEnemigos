@@ -30,7 +30,7 @@ public class Rat : Character{
             livesChanged?.Invoke();
             CheckHealth();
             StartCoroutine(HitCooldown());
-            PlaySound("Hit");
+            PlaySound("Hit", false);
         }
     }
 
