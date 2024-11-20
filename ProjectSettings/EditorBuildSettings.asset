@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1/Level1.unity
     guid: 980cd7c2f99c50c41b204ed15a078a4f
+  - enabled: 1
+    path: Assets/Scenes/Level2/NivelGatoAtico.unity
+    guid: 2797af15f9da0dc43aa0bb0f236cf0df
+  - enabled: 1
+    path: Assets/Scenes/Level2/NIvelGato.unity
+    guid: 67f673f2fba52de4396fd13f8fec75b9
+  - enabled: 1
+    path: Assets/Scenes/Victory/VictoryLv2.unity
+    guid: b28ef6bbf40bb024fa9a3883d378b4b4
   m_configObjects: {}

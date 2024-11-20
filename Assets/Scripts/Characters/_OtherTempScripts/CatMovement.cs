@@ -6,12 +6,16 @@ public class CatMovement : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private float speed;
+    [SerializeField] private bool holdingObject; public bool HoldingObject { get => holdingObject; set => holdingObject = value; }
+
+    [SerializeField] private bool pushingObject; public bool PushingObject { get => pushingObject; set => pushingObject = value; }
+    private bool canMove; public bool CanMove { set => canMove = value; }
     private Rigidbody2D rb;
     Vector2 input;
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animator>();
+        canMove = true;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -24,8 +28,17 @@ public class CatMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(input);
-        ChooseAnim(input);
+        if (canMove)
+        {
+            Move(input);
+            ChooseAnim(input);
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+            anim.Play("Idle");
+        }
+        
     }
 
     void Move(Vector2 input)
@@ -42,17 +55,44 @@ public class CatMovement : MonoBehaviour
                 // Movimiento en X
                 if (input.x > 0)
                 {
-                    // Movimiento hacia la derecha
-                    anim.Play("MoveRight");
+                    if (holdingObject)
+                    {
+                        // Sosteniendo hacia la derecha
+                        anim.Play("HoldRight");
+                    }
+                    else if (pushingObject) 
+                    {
+                        // Empujando hacia la derecha
+                        anim.Play("PushRight");
+                    }
+                    else
+                    {
+                        // Movimiento hacia la derecha
+                        anim.Play("MoveRight");
+                    }
                 }
                 else
                 {
-                    // Movimiento hacia la izquierda
-                    anim.Play("MoveLeft");
+                    if (holdingObject)
+                    {
+                        // Sosteniendo hacia la izquierda
+                        anim.Play("HoldLeft");
+                    }
+                    else if (pushingObject)
+                    {
+                        // Empujando hacia la izquierda
+                        anim.Play("PushLeft");
+                    }
+                    else
+                    {
+                        // Movimiento hacia la izquierda
+                        anim.Play("MoveLeft");
+                    }
                 }
             }
             else
             {
+                if (holdingObject) return;
                 // Movimiento en Y
                 if (input.y > 0)
                 {
@@ -68,7 +108,10 @@ public class CatMovement : MonoBehaviour
         }
         else
         {
-            anim.Play("Idle");
+            if (!holdingObject)
+            {
+                anim.Play("Idle");
+            }            
         }        
     }
 }

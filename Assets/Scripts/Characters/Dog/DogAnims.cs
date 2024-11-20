@@ -4,24 +4,40 @@ using UnityEngine;
 
 public class DogAnims : MonoBehaviour
 {
-    [SerializeField] private Transform rat;
-    [SerializeField] private Animator anim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(FollowPlayer());
-    }
+    [SerializeField] private string objetivo;
+    private Animator anim;
+    private bool isActive;
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();        
+
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (!gameObject.activeSelf) return;
+        if (!isActive)
+        {
+            if (anim != null && !anim.isActiveAndEnabled)
+            {
+                anim.enabled = true;
+            }
+            isActive = true;
+            StartCoroutine(FollowPlayer());
+        }
     }
     IEnumerator FollowPlayer()
     {
+        while (!anim.isActiveAndEnabled)
+        {
+            yield return null;
+        }
+
         while (true)
         {
-            Vector2 direction = (rat.position - transform.position).normalized;
+            GameObject targetObject = GameObject.Find(objetivo); 
+            Vector2 direction = (targetObject.transform.position - transform.position).normalized;
             // Comparar la direccion en el eje X y el eje Y
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
